@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="166" height="166" viewBox="0 0 166 166">
+  <g id="Group_522" data-name="Group 522" transform="translate(-124 -119)">
+    <circle id="Ellipse_85" data-name="Ellipse 85" cx="83" cy="83" r="83" transform="translate(124 119)" fill="#ff991e" opacity="0.2"/>
+    <circle id="Ellipse_86" data-name="Ellipse 86" cx="72.237" cy="72.237" r="72.237" transform="translate(135 129)" fill="#ff991e" opacity="0.2"/>
+    <circle id="Ellipse_87" data-name="Ellipse 87" cx="54.5" cy="54.5" r="54.5" transform="translate(153 147)" fill="#ff991e" opacity="0.99"/>
+    <g id="Icon_feather-refresh-cw" data-name="Icon feather-refresh-cw" transform="translate(183.674 177.053)">
+      <path id="Path_1231" data-name="Path 1231" d="M38.466,6V18.966H25.5" transform="translate(10.576 0.66)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/>
+      <path id="Path_1232" data-name="Path 1232" d="M1.5,33.966V21H14.466" transform="translate(0 7.269)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/>
+      <path id="Path_1233" data-name="Path 1233" d="M6.924,17.464A19.449,19.449,0,0,1,39.015,10.2l10.027,9.422M1.5,28.269l10.027,9.422A19.449,19.449,0,0,0,43.617,30.43" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "599151753238",
+    "project_id": "wajed-d0673",
+    "storage_bucket": "wajed-d0673.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:599151753238:android:2bbdb726aa794e11459d37",
+        "android_client_info": {
+          "package_name": "com.wajed_app.wajed_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoNuzXCb0a-P2j4FIXPLgwUXQkLLsaZF8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
