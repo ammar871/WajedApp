@@ -34,6 +34,7 @@ class _MarketDetailsScreenState extends State<MarketDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        bottomOpacity: 0.0,
         title: Text(
           Strings.detailsMarket.tr(),
           style: TextStyles.textStyleFontBold16BlackAppBar,
@@ -144,12 +145,17 @@ class CategoriesProductsWidget extends StatelessWidget {
     return Container(
         height: 60.h,
         width: context.width,
+        
         decoration: const BoxDecoration(color: Palette.kTabBarColor),
         child: TabBar(
+          
           labelColor: Palette.kTabBarColor,
           indicatorColor: Colors.transparent,
           unselectedLabelColor: Palette.fontGreyColor,
+          labelPadding: EdgeInsets.symmetric(horizontal: 5.w),
           isScrollable: true,
+          indicatorSize: TabBarIndicatorSize.label,
+          indicatorPadding: EdgeInsets.symmetric(vertical: 5.h),
           onTap: (value) {
             if (value == 0) {
               ProductCubit.get(context).getProductsByCategoryId(
@@ -167,22 +173,28 @@ class CategoriesProductsWidget extends StatelessWidget {
                   page: 1);
             }
           },
-          padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 5.w),
+          
           indicator: BoxDecoration(
               borderRadius: BorderRadius.circular(9.r),
               color: backgroundColor ?? Palette.mainColor),
           tabs: List.generate(categories.length + 1, (index) {
             if (index == 0) {
-              return Tab(
-                height:
-                    context.isResturant(currentUser!.user.role) ? 80.h : 50.h,
-                text: Strings.all.tr(),
+              return Padding(
+                padding:  EdgeInsets.symmetric(horizontal: 5.w),
+                child: Tab(
+                  height:
+                      context.isResturant(currentUser!.user.role) ? 80.h : 50.h,
+                  text: Strings.all.tr(),
+                ),
               );
             }
             final categoryModel = categories[index - 1];
-            return Tab(
-              height: context.isResturant(currentUser!.user.role) ? 80.h : 50.h,
-              text: isAraic() ? categoryModel.nameAr : categoryModel.nameEng,
+            return Padding(
+               padding:  EdgeInsets.symmetric(horizontal: 5.w),
+              child: Tab(
+                height: context.isResturant(currentUser!.user.role) ? 80.h : 50.h,
+                text: isAraic() ? categoryModel.nameAr : categoryModel.nameEng,
+              ),
             );
           }),
         ));

@@ -26,7 +26,7 @@ class OffersListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
         height: 175.h,
         width: context.width,
         child: CarouselSlider(

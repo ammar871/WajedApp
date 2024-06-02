@@ -1,15 +1,15 @@
 part of 'offer_cubit.dart';
 
 class OfferState extends Equatable {
-  final RequestState? getOffersState;
+  final RequestState getOffersState;
   final List<OfferModel> offers;
-  final RequestState? getMarketsByOfferIdState;
+  final RequestState getMarketsByOfferIdState;
   final MarketResponse? marketsByOfferId;
 
   OfferState(
-      {this.getOffersState,
+      {this.getOffersState = RequestState.loading,
       this.offers = const [],
-      this.getMarketsByOfferIdState,
+      this.getMarketsByOfferIdState = RequestState.loading,
       this.marketsByOfferId});
 
   // copy with
@@ -24,8 +24,9 @@ class OfferState extends Equatable {
           getMarketsByOfferIdState:
               getMarketsByOfferIdState ?? this.getMarketsByOfferIdState,
           marketsByOfferId: marketsByOfferId ?? this.marketsByOfferId);
+
+          
   @override
-  
   List<Object?> get props =>
       [getOffersState, offers, getMarketsByOfferIdState, marketsByOfferId];
 }

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:wajed_app/core/common_widgets/image_network.dart';
-import 'package:wajed_app/core/helpers/spacing.dart';
-import 'package:wajed_app/core/theming/styles.dart';
-import 'package:wajed_app/core/utils/strings.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wajed_app/core/enums/loading_status.dart';
+import 'package:wajed_app/core/utils/app_model.dart';
+import 'package:wajed_app/user/offers/bloc/offer_cubit/offer_cubit.dart';
 import 'package:wajed_app/user/offers/data/models/offfer_model.dart';
-
-
+import 'components/loaded_offers_widget.dart';
 
 class OffersScreen extends StatefulWidget {
   final OfferModel offer;
@@ -18,64 +16,33 @@ class OffersScreen extends StatefulWidget {
 
 class _OffersScreenState extends State<OffersScreen> {
   @override
+  void initState() {
+    super.initState();
+    OfferCubit.get(context).getMarketsByOfferId(
+        offerId: widget.offer.id,
+        addressId: currentDefulteAddress!.id,
+        page: 1);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: CustomScrollView(
-      slivers: [
-        SliverAppBar(
-          expandedHeight: 250.0.h,
-          automaticallyImplyLeading: false,
-          pinned: true,
-          floating: false,
-          snap: false,
-          leading: BackButton(),
-          flexibleSpace: FlexibleSpaceBar(
-              centerTitle: true,
-              titlePadding:
-                  EdgeInsets.symmetric(horizontal: 30.w, vertical: 20.h),
-              title: Container(
-                height: 40.h,
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border(
-                        bottom: BorderSide(color: Colors.green, width: 1))),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.search,
-                      size: 15.w,
-                    ),
-                    horizontalSpace(10.w),
-                    Expanded(
-                        child: Text(
-                      Strings.searchToMarket,
-                      style: TextStyles.textStyleFontBold12kDarkGrey,
-                    ))
-                  ],
-                ),
-              ),
-              collapseMode: CollapseMode.parallax,
-              background: Padding(
-                padding: const EdgeInsets.only(bottom: 30),
-                child: ImageNetworkWidget(
-                  imageUrl: widget.offer.image,
-                  height: 250.h,
-                  width: double.infinity,
-                ),
-              )),
-        ),
-        SliverList.builder(
-            itemCount: 20,
-            itemBuilder: (context, index) {
-              return Container(
-                height: 100.h,
-                color: Colors.green,
-                margin: EdgeInsets.all(5.h),
-                width: double.infinity,
-              );
-            })
-      ],
-    ));
+        body: BlocBuilder<OfferCubit, OfferState>(
+          builder: (context, state) {
+      switch (state.getMarketsByOfferIdState) {
+        case RequestState.loading:
+          return const Center(child: CircularProgressIndicator());
+        case RequestState.loaded:
+          return LoadedOffersWidget(state: state,offer: widget.offer,);
+
+        case RequestState.error:
+          return const Center(child: Text("Error"));
+        case RequestState.pagination:
+          return const Center(child: Text("pagination"));
+        default:
+          return const Center(child: CircularProgressIndicator());
+      }
+    }));
   }
 }
+

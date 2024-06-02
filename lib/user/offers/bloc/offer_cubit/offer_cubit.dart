@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:wajed_app/user/offers/data/models/offfer_model.dart';
 import 'package:wajed_app/user/offers/data/repo/offfer_repo.dart';
@@ -12,7 +13,7 @@ part 'offer_state.dart';
 class OfferCubit extends Cubit<OfferState> {
   final BaseOffer _baseOffer;
   OfferCubit(this._baseOffer) : super(OfferState());
-
+ static OfferCubit get(context) => BlocProvider.of<OfferCubit>(context);
   // *  get offers
   Future<void> getOffers({userId, page}) async {
     emit(state.copyWith(getOffersState: RequestState.loading));

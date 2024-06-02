@@ -1,11 +1,9 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wajed_app/core/enums/loading_status.dart';
 import 'package:wajed_app/user/favoraite/data/models/add_fav_body.dart';
 import 'package:wajed_app/user/favoraite/data/models/favoraite_response.dart';
 import 'package:wajed_app/user/favoraite/data/repo/favoraite_repo.dart';
-
 import '../../../../core/utils/app_model.dart';
 part 'favoraite_state.dart';
 
@@ -21,7 +19,7 @@ class FavoraiteCubit extends Cubit<FavoraiteState> {
     result.when(success: (data) {
       favFound.clear();
       for (var element in data) {
-        favFound.addAll({element.favorite.marketId: element.favorite.marketId});
+        favFound.add(element.favorite.marketId);
       }
       emit(state.copyWith(
           getFavoraitsState: RequestState.loaded, favoraites: data));
@@ -32,9 +30,9 @@ class FavoraiteCubit extends Cubit<FavoraiteState> {
 
   // add favoraites
   Future<void> addFavoraites(AddFavBody addFavBody) async {
-    favFound.containsValue(addFavBody.marketId)
+    favFound.contains(addFavBody.marketId)
         ? favFound.remove(addFavBody.marketId)
-        : favFound.addAll({addFavBody.marketId: addFavBody.marketId});
+        : favFound.add(addFavBody.marketId);
     emit(state.copyWith(addFavState: RequestState.loading));
     var result = await _favRepo.addFavoraite(addFavBody);
     result.when(success: (data)async {

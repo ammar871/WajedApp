@@ -307,6 +307,8 @@ class Strings {
   static const areYouSureDeleteAccount = "هل أنت متأكد أنك تريد حذف الحساب ؟";
 
  static const yes ="نعم";
+
+ static const offersDay="العروض اليومية";
   
     
 }

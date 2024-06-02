@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:location/location.dart';
@@ -131,10 +131,10 @@ showToast({msg, color}) {
       fontSize: 16.0);
 }
 
-Future saveData(key, value) async {
-  const storage = FlutterSecureStorage();
-  storage.write(key: key, value: value);
-}
+// Future saveData(key, value) async {
+//   const storage = FlutterSecureStorage();
+//   storage.write(key: key, value: value);
+// }
 
 /// * bootm sheet widget
 void showBottomSheetWidget(context, child) {
@@ -157,18 +157,6 @@ showPopMenu({context, items, key, postion}) {
   );
 }
 
-RelativeRect _getRelativeRect(GlobalKey key) {
-  return RelativeRect.fromSize(_getWidgetGlobalRect(key), Size(200.w, 200));
-}
-
-Rect _getWidgetGlobalRect(GlobalKey key) {
-  final RenderBox renderBox =
-      key.currentContext!.findRenderObject() as RenderBox;
-  var offset = renderBox.localToGlobal(Offset.zero);
-  debugPrint('Widget position: ${offset.dx} ${offset.dy}');
-  return Rect.fromLTWH(offset.dx / 3.1, offset.dy * 1.05, renderBox.size.width,
-      renderBox.size.height);
-}
 
 // ===========================
 void showDialogWidget(BuildContext context, Widget child) {

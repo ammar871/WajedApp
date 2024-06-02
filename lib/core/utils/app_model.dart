@@ -17,7 +17,7 @@ UserResponse? currentUser;
 AddressModel? currentDefulteAddress;
 List<FieldModel> fields = [];
 List<CategoryModel> categories = [];
- Map<int, int> favFound = {};
+ var favFound = <int>{};
 
 MarketModel? marketDetails;
 

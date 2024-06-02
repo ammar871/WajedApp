@@ -25,7 +25,7 @@ class IconFavWidget extends StatelessWidget {
                     .addFavoraites(AddFavBody(currentUser!.user.id, marketId));
               },
               icon: Icon(
-                favFound.containsKey(marketId)
+                favFound.contains(marketId)
                     ? Icons.favorite
                     : Icons.favorite_border,
                 size: 25.w,
